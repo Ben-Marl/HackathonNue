@@ -1,0 +1,28 @@
+<!-- Inheriting the layout template. This is called template inheritance -->
+{% extends "layout.html" %}  
+<!-- overriding the 'content' block -->
+{% block content %}
+<div class="row">
+	<div class="col-md-8">
+		{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    {{msg}}
+                {% endfor %}
+            {% endif %}
+         {% endwith %}
+		<h1>About Sharp Portfolio</h1>
+		<p>
+			
+			
+
+			<h3>What's with the name?</h3>
+			To <i>sharpen</i> your portfolio, the algorithm behind this application generates 10000 different portfolio distributions and then picks the one from the efficient frontier which has the maximum <a href="https://en.wikipedia.org/wiki/Sharpe_ratio">Sharpe Ratio</a> - a performance measure for investments developed by William F. Sharpe. <br>
+			Hence the name <i>Sharp Portfolio</i>!
+			<br>
+			<hr>
+			
+		</p>
+	</div>
+</div>
+{% endblock content %}
