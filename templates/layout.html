@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- stylesheet linking to the main.css file using url_for() func of flask -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='main.css') }}">
+    <script src = "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"> </script>
+	{% if title %}
+		<title>Sharp Portfolio - {{ title }}</title>
+	{% else %}
+		<title>Sharp Portfolio</title>
+	{% endif %}
+	
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+	<header class="site-header">
+	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+
+	    <div class="container">
+	      <a class="navbar-brand mr-4" href="/">Sharp Portfolio</a>
+
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button> 
+
+	      <div class="collapse navbar-collapse" id="navbarToggle">
+	      	<!-- Navbar Left Side -->
+	        <div class="navbar-nav mr-auto">
+	          <a class="nav-item nav-link" href="/">Home</a>
+	          <a class="nav-item nav-link" href="/about">About</a>
+	          <a class="nav-item nav-link" href="https://github.com/HarshitNTiwari/Portfolio-Optimizer">GitHub</a>
+	        </div>
+
+	        <!-- Navbar Right Side -->
+	        <div class="navbar-nav ms-auto">
+	        	{% if current_user.is_autheticated %}
+	        		<a class="nav-item nav-link" href="/account">{{current_user.username}}</a>
+	        	{% endif %}
+	          <a class="nav-item nav-link" href="/account">My account</a>
+	          <a class="nav-item nav-link" href="/login">Login</a>
+	          <a class="nav-item nav-link" href="/logout">Logout</a>
+	        </div>
+
+	      </div>
+
+	    </div>
+
+	  </nav>
+	</header>
+
+	<!-- Body -->
+	<main role="main" class="container">
+	  <div class="row">
+
+	      {% block content %}{% endblock %}
+	
+
+	    <!-- <div class="col-md-4">
+	      <div class="content-section">
+	        <h3>Instructions to use:</h3>
+	        <p class='text-muted'> Important: This project is meant only for educational purposes and is not meant to provide actual financial intelligence. Investments must be made at your own discretion. 
+	        	<ul>
+	        		<li>Enter space-separated tickers in the input field. E.g. MSFT NFLX</li>
+	        		<li>You may enter as many companies as you wish.</li>
+	        		<li>For some country specific companies, search the exact ticker from Yahoo! Finance first before entering. E.g. for Infosys Ltd, the NYSE ticker is 'INFY' while NSE ticker is 'INFY.NS'.</li>
+	        		<li>Since the algorithm is written from scratch in Python, results may take some time (maybe upto 1 min or more) to show up.</li>
+	        	</ul>
+	        </p>
+	        <h3>Notes about the project:</h3>
+	        <p class='text-muted'>
+	        	<ul>
+	        		<li> The tool uses statistical methods of mean and variance to calculate returns and risks associated with different portfolios.</li>
+	        		<li>This idea was first proposed by Harry Markowitz in his foundational work in the field of Quantitaive Finance.</li>
+	        		<li> Although not the best, this technique still holds historical relevance.</li>
+	        		<li>Thus the results may be far from being accurate. Read more about the project on the <a href="/about">About</a> page.</li>
+	        	</ul>
+	        </p>
+	      </div>
+	    </div> -->
+	    
+	  </div>
+	</main>  
+	  
+
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
